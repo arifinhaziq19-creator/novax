@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Sains • LAB HUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        lab: {
+                            bg: '#10191d',
+                            panel: '#17252a',
+                            line: '#30434a',
+                            muted: '#99afb5',
+                            mint: '#bcf472',
+                            minthover: '#d2ff99',
+                            text: '#ecf3ee',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: theme('colors.lab.bg');
+            color: theme('colors.lab.text');
+            scrollbar-width: thin;
+            scrollbar-color: theme('colors.lab.line') theme('colors.lab.bg');
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.lab.bg');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.lab.line');
+            border-radius: 4px;
+        }
+        .glass-header {
+            background: rgba(23, 37, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: theme('colors.lab.mint');
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="h-[70px] flex items-center justify-between px-6 lg:px-12 border-b border-lab-line glass-header sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <div class="text-2xl font-extrabold tracking-tight">
+                LAB <span class="text-lab-mint">HUB</span>
+            </div>
+            <sup class="text-[10px] tracking-widest text-lab-muted font-normal mt-2">PORTAL</sup>
+        </div>
+        <nav class="hidden md:flex gap-8 text-sm font-medium text-lab-muted">
+            <a href="#dashboard" class="hover:text-lab-mint transition-colors">Dashboard Kemajuan</a>
+            <a href="#konsep" class="hover:text-lab-mint transition-colors">Konsep Sains</a>
+        </nav>
+        <a href="index-1.html" class="bg-lab-mint text-[#19251d] border border-lab-mint font-bold rounded-lg px-5 py-2.5 hover:bg-lab-minthover focus:ring-4 focus:ring-lab-mint/50 focus:outline-none transition-all text-sm shadow-[0_0_15px_rgba(188,244,114,0.3)]">
+            Buka Makmal
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 lg:px-8 py-12 max-w-6xl space-y-24">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-10 pb-8">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                Teroka Dunia Kimia <br class="hidden md:block"> Secara <span class="text-lab-mint relative">Maya<span class="absolute -bottom-2 left-0 w-full h-1 bg-lab-mint rounded-full opacity-50"></span></span>
+            </h1>
+            <p class="text-lab-muted max-w-2xl mx-auto text-lg leading-relaxed">
+                Portal rujukan rasmi anda untuk memahami konsep di sebalik eksperimen. Semak kemajuan anda, pelajari teori sains, dan praktikkan dalam makmal simulasi kami.
+            </p>
+        </section>
+
+        <!-- Dashboard Kemajuan -->
+        <section id="dashboard" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="w-8 h-8 rounded-full bg-lab-panel border border-lab-line flex items-center justify-center text-lab-mint font-bold text-sm shadow-[0_0_10px_rgba(188,244,114,0.1)]">01</span>
+                        <h2 class="text-2xl font-bold">Dashboard Kemajuan</h2>
+                    </div>
+                    <p class="text-sm text-lab-muted ml-11">Data dibaca secara langsung dari simpanan pelayar (localStorage) anda.</p>
+                </div>
+                <button onclick="muatTurunData()" class="flex items-center gap-2 bg-[#1b2c32] hover:bg-[#26383f] border border-lab-line text-lab-text px-4 py-2 rounded-lg transition-colors text-sm font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    Segar Semula
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Card 1: Sandbox -->
+                <div class="bg-lab-panel border border-lab-line rounded-2xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-bl-full blur-xl"></div>
+                    <span class="text-xs text-lab-muted uppercase tracking-wider font-semibold block mb-3">Radas Aktif (Sandbox)</span>
+                    <div class="flex items-end gap-2">
+                        <span id="stat-vessels" class="text-4xl font-extrabold text-white">0</span>
+                        <span class="text-sm text-lab-muted pb-1 font-medium">radas di meja</span>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Titrasi -->
+                <div class="bg-lab-panel border border-lab-line rounded-2xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-pink-500/10 rounded-bl-full blur-xl"></div>
+                    <span class="text-xs text-lab-muted uppercase tracking-wider font-semibold block mb-3">Titrasi Asid-Bes</span>
+                    <div class="flex items-end gap-2">
+                        <span id="stat-titration" class="text-4xl font-extrabold text-lab-mint">0</span>
+                        <span class="text-2xl font-bold text-lab-muted">/3</span>
+                        <span class="text-sm text-lab-muted pb-1 font-medium ml-1">percubaan</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Gas -->
+                <div class="bg-lab-panel border border-lab-line rounded-2xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-green-500/10 rounded-bl-full blur-xl"></div>
+                    <span class="text-xs text-lab-muted uppercase tracking-wider font-semibold block mb-3">Hukum Gas</span>
+                    <div class="flex items-end gap-2">
+                        <span id="stat-gas" class="text-4xl font-extrabold text-lab-mint">0</span>
+                        <span class="text-sm text-lab-muted pb-1 font-medium">bacaan direkod</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Ionik -->
+                <div class="bg-lab-panel border border-lab-line rounded-2xl p-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-yellow-500/10 rounded-bl-full blur-xl"></div>
+                    <span class="text-xs text-lab-muted uppercase tracking-wider font-semibold block mb-3">Ujian Ionik / Kovalen</span>
+                    <div class="flex items-end gap-2">
+                        <span id="stat-ionic" class="text-4xl font-extrabold text-lab-mint">0</span>
+                        <span class="text-2xl font-bold text-lab-muted">/12</span>
+                        <span class="text-sm text-lab-muted pb-1 font-medium ml-1">selesai</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nota & Konsep Sains -->
+        <section id="konsep" class="scroll-mt-24 mb-12">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="w-8 h-8 rounded-full bg-lab-panel border border-lab-line flex items-center justify-center text-lab-mint font-bold text-sm shadow-[0_0_10px_rgba(188,244,114,0.1)]">02</span>
+                <h2 class="text-2xl font-bold">Konsep Sains & Eksperimen</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Titrasi -->
+                <article class="bg-lab-panel border border-lab-line rounded-2xl p-7 card-hover flex flex-col h-full">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 bg-[#203239] text-[#cbdedd] border border-lab-line rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Analisis Kuantitatif</span>
+                        <h3 class="text-xl font-bold mb-2">Titrasi Asid-Bes</h3>
+                        <p class="text-sm text-lab-muted leading-relaxed">Teknik untuk menentukan kepekatan larutan yang tidak diketahui dengan menggunakan larutan piawai yang kepekatannya diketahui.</p>
+                    </div>
+                    <div class="mt-auto pt-4 space-y-3 border-t border-lab-line">
+                        <p class="text-sm"><strong class="text-gray-200">Peneutralan:</strong> <code class="text-lab-mint bg-[#0f1c21] px-1.5 py-0.5 rounded ml-1">H⁺(aq) + OH⁻(aq) → H₂O(l)</code></p>
+                        <p class="text-sm"><strong class="text-gray-200">Titik Kesetaraan:</strong> Tahap di mana mol asid bersamaan dengan mol bes secara stoikiometri.</p>
+                        <p class="text-sm"><strong class="text-gray-200">Titik Akhir:</strong> Diperhatikan melalui perubahan warna penunjuk (cth: Fenolftalein bertukar merah jambu dalam keadaan beralkali).</p>
+                    </div>
+                </article>
+
+                <!-- Hukum Gas -->
+                <article class="bg-lab-panel border border-lab-line rounded-2xl p-7 card-hover flex flex-col h-full">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 bg-[#203239] text-[#cbdedd] border border-lab-line rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Sifat Fizik</span>
+                        <h3 class="text-xl font-bold mb-2">Hukum Gas</h3>
+                        <p class="text-sm text-lab-muted leading-relaxed">Mengkaji tingkah laku gas dan hubungan antara tekanan, isi padu, suhu, dan bilangan mol (Gas Ideal).</p>
+                    </div>
+                    <div class="mt-auto pt-4 space-y-3 border-t border-lab-line">
+                        <p class="text-sm"><strong class="text-gray-200">Hukum Boyle:</strong> Pada suhu malar, isi padu gas berkadar songsang dengan tekanannya. <br><code class="text-lab-mint bg-[#0f1c21] px-1.5 py-0.5 rounded mt-1 inline-block">P₁V₁ = P₂V₂</code></p>
+                        <p class="text-sm"><strong class="text-gray-200">Hukum Avogadro:</strong> Pada suhu dan tekanan malar, isi padu gas berkadar terus dengan bilangan molnya. <code class="text-lab-mint bg-[#0f1c21] px-1.5 py-0.5 rounded ml-1">V ∝ n</code></p>
+                    </div>
+                </article>
+
+                <!-- Pemendakan -->
+                <article class="bg-lab-panel border border-lab-line rounded-2xl p-7 card-hover flex flex-col h-full">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 bg-[#203239] text-[#cbdedd] border border-lab-line rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Keseimbangan Kimia</span>
+                        <h3 class="text-xl font-bold mb-2">Tindak Balas Pemendakan</h3>
+                        <p class="text-sm text-lab-muted leading-relaxed">Penghasilan pepejal tak larut (mendakan) apabila dua larutan akueus dicampurkan.</p>
+                    </div>
+                    <div class="mt-auto pt-4 space-y-3 border-t border-lab-line">
+                        <p class="text-sm"><strong class="text-gray-200">Contoh:</strong> <code class="text-lab-mint bg-[#0f1c21] px-1.5 py-0.5 rounded ml-1">Ag⁺(aq) + Cl⁻(aq) → AgCl(s)↓</code></p>
+                        <p class="text-sm"><strong class="text-gray-200">Ksp (Hasil Darab Keterlarutan):</strong> Pemalar keseimbangan bagi sebatian ionik yang sedikit larut. Mendakan terbentuk jika Hasil Darab Ion (Qsp) melebihi Ksp.</p>
+                    </div>
+                </article>
+
+                <!-- Elektrolit -->
+                <article class="bg-lab-panel border border-lab-line rounded-2xl p-7 card-hover flex flex-col h-full">
+                    <div class="mb-4">
+                        <span class="inline-block px-3 py-1 bg-[#203239] text-[#cbdedd] border border-lab-line rounded-full text-xs font-semibold uppercase tracking-wider mb-4">Ikatan Kimia</span>
+                        <h3 class="text-xl font-bold mb-2">Elektrolit & Kekonduksian</h3>
+                        <p class="text-sm text-lab-muted leading-relaxed">Menentukan jenis ikatan kimia dan keupayaan sesuatu larutan untuk mengalirkan arus elektrik.</p>
+                    </div>
+                    <div class="mt-auto pt-4 space-y-3 border-t border-lab-line">
+                        <p class="text-sm"><strong class="text-gray-200">Elektrolit Kuat:</strong> Sebatian ionik (cth: NaCl) yang mengion sepenuhnya dalam air menghasilkan banyak ion bebas bergerak. Konduktor yang sangat baik.</p>
+                        <p class="text-sm"><strong class="text-gray-200">Bukan Elektrolit:</strong> Kebanyakan sebatian kovalen molekul (cth: Lilin, Etanol) yang terlarut sebagai molekul neutral dan tidak mengalirkan elektrik.</p>
+                    </div>
+                </article>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-lab-line bg-[#0f1c21] py-6">
+        <div class="container mx-auto px-6 text-center text-xs text-lab-muted">
+            <p>&copy; 2026 LAB HUB. Direka sebagai portal rujukan bersampingan untuk Sandbox Makmal.</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * Function to read data from localStorage and update the Dashboard Kemajuan.
+         */
+        function muatTurunData() {
+            try {
+                // 1. labhub-v1 : Sandbox General (Active Vessels)
+                const labStr = localStorage.getItem('labhub-v1');
+                let vesselsCount = 0;
+                if (labStr) {
+                    const labData = JSON.parse(labStr);
+                    vesselsCount = Array.isArray(labData.vessels) ? labData.vessels.length : 0;
+                }
+                animateValue('stat-vessels', vesselsCount);
+
+                // 2. labhub-standardization-v1 : Titration Experiment
+                const stdStr = localStorage.getItem('labhub-standardization-v1');
+                let titrationCount = 0;
+                if (stdStr) {
+                    const stdData = JSON.parse(stdStr);
+                    titrationCount = Array.isArray(stdData.trials) ? stdData.trials.length : 0;
+                }
+                // Cap at 3 based on the game's design
+                animateValue('stat-titration', Math.min(titrationCount, 3));
+
+                // 3. labhub-gas-v1 : Gas Laws Experiment
+                const gasStr = localStorage.getItem('labhub-gas-v1');
+                let gasCount = 0;
+                if (gasStr) {
+                    const gasData = JSON.parse(gasStr);
+                    const boyle = Array.isArray(gasData.boyle) ? gasData.boyle.length : 0;
+                    const avogadro = Array.isArray(gasData.avogadro) ? gasData.avogadro.length : 0;
+                    gasCount = boyle + avogadro;
+                }
+                animateValue('stat-gas', gasCount);
+
+                // 4. labhub-ionic-v1 : Ionic / Covalent Tests
+                const ionicStr = localStorage.getItem('labhub-ionic-v1');
+                let ionicCount = 0;
+                if (ionicStr) {
+                    const ionicData = JSON.parse(ionicStr);
+                    ionicCount = Array.isArray(ionicData.records) ? ionicData.records.length : 0;
+                }
+                animateValue('stat-ionic', Math.min(ionicCount, 12));
+
+                // Subtle visual feedback on the button
+                const btn = document.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg> Disemak`;
+                btn.classList.add('text-lab-mint', 'border-lab-mint');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('text-lab-mint', 'border-lab-mint');
+                }, 600);
+
+            } catch (error) {
+                console.error("Ralat membaca data LAB HUB dari localStorage:", error);
+            }
+        }
+
+        /**
+         * Simple counter animation for the dashboard numbers.
+         */
+        function animateValue(id, endValue) {
+            const obj = document.getElementById(id);
+            const startValue = parseInt(obj.textContent) || 0;
+            if (startValue === endValue) {
+                obj.textContent = endValue;
+                return;
+            }
+            
+            let startTimestamp = null;
+            const duration = 800; // ms
+
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // Ease out cubic
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentVal = Math.floor(easeProgress * (endValue - startValue) + startValue);
+                
+                obj.textContent = currentVal;
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.textContent = endValue;
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Jalankan semasa muka surat sedia
+        document.addEventListener('DOMContentLoaded', muatTurunData);
+
+        // Dengar perubahan storan jika pengguna bermain di tab bersebelahan
+        window.addEventListener('storage', (e) => {
+            const relevantKeys = ['labhub-v1', 'labhub-gas-v1', 'labhub-standardization-v1', 'labhub-ionic-v1'];
+            if (relevantKeys.includes(e.key)) {
+                muatTurunData();
+            }
+        });
+    </script>
+</body>
+</html>
